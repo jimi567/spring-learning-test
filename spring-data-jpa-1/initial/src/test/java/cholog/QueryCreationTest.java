@@ -1,14 +1,13 @@
 package cholog;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class QueryCreationTest {
@@ -17,7 +16,7 @@ public class QueryCreationTest {
     private EntityManager entityManager;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private cholog.CustomerRepository customerRepository;
 
     @Test
     void findByLastName() {

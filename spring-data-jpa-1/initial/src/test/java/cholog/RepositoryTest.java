@@ -1,12 +1,12 @@
 package cholog;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class RepositoryTest {
@@ -15,11 +15,12 @@ public class RepositoryTest {
     private EntityManager entityManager;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private cholog.CustomerRepository customerRepository;
 
     @Test
     void save() {
         customerRepository.save(new Customer("Jack", "Bauer"));
+        customerRepository.save(new Customer("Chloe", "O'Brian"));
 
         Iterable<Customer> customers = customerRepository.findAll();
         assertThat(customers).extracting(Customer::getFirstName).containsOnly("Jack", "Chloe");
